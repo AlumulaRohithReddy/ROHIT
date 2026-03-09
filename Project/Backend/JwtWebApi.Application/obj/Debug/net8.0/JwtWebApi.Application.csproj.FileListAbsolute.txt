@@ -1,0 +1,15 @@
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\bin\Debug\net8.0\JwtWebApi.Application.deps.json
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\bin\Debug\net8.0\JwtWebApi.Application.dll
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\bin\Debug\net8.0\JwtWebApi.Application.pdb
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\bin\Debug\net8.0\JwtWebApi.Domain.dll
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\bin\Debug\net8.0\JwtWebApi.Domain.pdb
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.csproj.AssemblyReference.cache
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.AssemblyInfoInputs.cache
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.AssemblyInfo.cs
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.csproj.CoreCompileInputs.cache
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebAp.8D9BE01D.Up2Date
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.dll
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\refint\JwtWebApi.Application.dll
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\JwtWebApi.Application.pdb
+C:\Users\ROHITH\.gemini\antigravity\scratch\JwtWebApi\JwtWebApi.Application\obj\Debug\net8.0\ref\JwtWebApi.Application.dll

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ny7PYYECEdQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ROHITH\\.gemini\\antigravity\\scratch\\JwtWebApi\\JwtWebApi.Domain\\JwtWebApi.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ROHITH\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\ROHITH\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\ROHITH\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.24\\microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}
