@@ -1,0 +1,131 @@
+:root {
+  --primary: #f3af3d;
+  --primary-dark: #e67e22;
+  --sidebar-bg: #ffffff;
+  --bg-main: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #f1f5f9;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Base Styles */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Sidebar styles moved to Tailwind in HTML */
+
+.nav-item {
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.nav-item-active {
+  background: linear-gradient(135deg, #f3af3d 0%, #fa8c16 100%);
+  color: white !important;
+  box-shadow: 0 10px 15px -3px rgba(243, 175, 61, 0.2);
+}
+
+/* Premium Component styling from Images */
+.premium-card {
+  background: white;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+/* Horizontal Stat Cards (Claims Style) */
+.claim-stat-card {
+  @apply bg-white p-5 rounded-2xl border border-gray-100 flex items-center space-x-4 shadow-sm;
+  border-left-width: 4px;
+}
+
+/* Table Refinements */
+.premium-table {
+  @apply w-full text-left;
+}
+
+.premium-table thead th {
+  @apply px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-[0.1em] border-b border-gray-50;
+}
+
+.premium-table tbody tr {
+  @apply hover:bg-gray-50/50 transition-colors;
+}
+
+.premium-table tbody td {
+  @apply px-6 py-4 text-sm;
+}
+
+/* Status Badges */
+.badge {
+  @apply px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider inline-flex items-center;
+}
+
+.badge-active {
+  @apply bg-green-50 text-green-600;
+}
+
+.badge-pending {
+  @apply bg-orange-50 text-orange-600;
+}
+
+.badge-rejected {
+  @apply bg-red-50 text-red-600;
+}
+
+.badge-approved {
+  @apply bg-green-50 text-green-600;
+}
+
+.badge-review {
+  @apply bg-blue-50 text-blue-600;
+}
+
+/* Modal Refinements */
+.modal-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[2px];
+}
+
+.modal-container {
+  @apply bg-white w-full max-w-lg rounded-[2rem] shadow-2xl overflow-hidden;
+}
+
+/* Scrollbar */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Animation */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

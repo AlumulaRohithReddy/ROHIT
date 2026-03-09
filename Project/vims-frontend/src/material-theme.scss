@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+
+$my-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: (brand-family: Roboto,
+        plain-family: Roboto,
+      ),
+      density: (scale: 0,
+      ),
+    ));
+
+$my-dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$violet-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: (brand-family: Roboto,
+        plain-family: Roboto,
+      ),
+      density: (scale: 0,
+      ),
+    ));
+
+
+
+html {
+  height: 100%;
+  @include mat.theme($my-theme);
+
+  &.dark {
+    @include mat.theme($my-dark-theme);
+  }
+}
+
+body {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

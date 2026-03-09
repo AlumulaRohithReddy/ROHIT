@@ -1,0 +1,105 @@
+# Mentor Presentation Guide: Vehicle Insurance Management System (VIMS)
+
+This guide provides a structured breakdown for your presentation. You can use these notes to create a slide deck or as a script for your explanation.
+
+---
+
+## Slide 1: Title Slide
+**Title**: Vehicle Insurance Management System (VIMS)
+**Subtitle**: A Full-Stack Enterprise Solution for Policy & Claim Management
+**Presenter**: [Your Name]
+**Objective**: To demonstrate a scalable, secure, and modern approach to insurance management.
+
+---
+
+## Slide 2: Project Overview
+**Goal**: Why did we build this?
+- **Modernizing Insurance**: Traditional systems are often fragmented and slow.
+- **Role-Based Access**: Specialized interfaces for Admin, Customers, Agents, and Claims Officers.
+- **End-to-End Flow**: From policy discovery and purchase to claim settlement and payment history.
+
+---
+
+## Slide 3: Technical Stack (The "How")
+A modern full-stack architecture ensuring scalability and performance.
+- **Backend**: .NET 8 Web API
+    - **Pattern**: Clean Architecture (Domain, Application, Infrastructure, API Layers).
+    - **Security**: JWT (JSON Web Token) for authentication and RBAC for authorization.
+    - **Persistence**: EF Core with SQL Server (or relational DB).
+- **Frontend**: Angular 18/19
+    - **Styling**: Tailwind CSS for a premium, compact UI.
+    - **State Management**: Reactive programming with RxJS.
+    - **Routing**: Sophisticated guard-protected routing system.
+
+---
+
+## Slide 4: System Architecture (Clean Architecture)
+*Explain that the project follows the "Clean Architecture" paradigm:*
+1. **Domain**: Core entities (Policy, Claim, Vehicle, User) and business rules.
+2. **Application**: Use cases (CRUD operations, business logic, DTOs).
+3. **Infrastructure**: External concerns like DB Context, Auth services, and file storage.
+4. **API**: The entry point, handling HTTP requests and mapping responses.
+> [!TIP]
+> Mention that this separation makes the system **unit-testable** and **maintainable**.
+
+---
+
+## Slide 5: Core Modules - Admin Dashboard
+The "Nerve Center" of the system.
+- **Dashboard Analytics**: Overview of users, active policies, and pending claims.
+- **Role Management**: Creating and managing Employee/Agent accounts.
+- **Plan Configuration**: Admin defines "Policy Plans" (Premium, Coverage, Duration).
+- **System Settings**: Global configurations and error monitoring.
+
+---
+
+## Slide 6: Core Modules - Customer Experience
+Focus on accessibility and ease of use.
+- **Vehicle Registration**: Users can register and manage their vehicles.
+- **Policy Marketplace**: Browsing plans and purchasing insurance via a streamlined flow.
+- **Claim Submission**: Filing claims directly with document uploads.
+- **Financial Tracking**: Viewing payment history and claim statuses in real-time.
+
+---
+
+## Slide 7: Core Modules - Agent & Claims Officer
+Specific workflows for field and back-office staff.
+- **Agent Portal**: Managing assigned customers and their policy renewals.
+- **Claims Officer**: Dedicated interface for reviewing, approving, or rejecting claims based on documentation.
+- **Workflow Isolation**: Ensuring an Officer can only see claims, and an Agent can only see their clients.
+
+---
+
+## Slide 8: The "Smart Engine" & Core Logic
+Highly optimized core features that differentiate the system.
+- **Smart Engine Implementation**:
+    - **Dynamic Premium Calculation**: Automated logic that determines policy premiums based on vehicle type, manufacture year, and selected coverage.
+    - **Automated Claim Validation**: Backend logic that cross-references claim details with active policy coverage to flag discrepancies immediately.
+    - **Intelligent Routing**: The system automatically assigns claims to available officers or routes policy queries to the relevant agent.
+- **Advanced State Machine**: Claims and Policies move through predefined states (Draft -> Pending -> Approved/Paid/Expired) ensuring data integrity.
+
+---
+
+## Slide 9: Technical Highlights (The "Wow" Factor)
+- **JWT Authentication**: Secure stateless login with automatic token refresh or expiry handling.
+- **Custom Guards**: Route protection ensuring no unauthorized access to dashboards.
+- **Global Error Handling**: A centralized mechanism to catch and log errors, preventing app crashes.
+- **Responsive Premium UI**: Hand-crafted CSS/Tailwind components with smooth transitions and a compact "Admin-style" aesthetic.
+
+---
+
+## Slide 9: LIVE DEMO SCRIPT
+*Suggested flow for your presentation:*
+1. **Login**: Show the login screen and role-based redirect.
+2. **Admin Setup**: Briefly show how a Policy Plan is created.
+3. **Customer Purchase**: Switch to a customer account, "Buy" a policy for a vehicle.
+4. **Claim Flow**: Submit a dummy claim.
+5. **Officer Review**: Log in as a Claims Officer and show the claim appearing for approval.
+6. **Payment**: Show the payment reflected in the history.
+
+---
+
+## Slide 10: Conclusion & Learnings
+- **Challenges Overcome**: Port conflicts, asset mismatches, and complex role-based routing.
+- **Key Learnings**: Deep understanding of Clean Architecture and Angular module separation.
+- **Future Scope**: Integration of AI for claim verification or a mobile app companion.

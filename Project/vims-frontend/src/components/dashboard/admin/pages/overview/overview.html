@@ -1,0 +1,67 @@
+<section class="space-y-1">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Overview</h2>
+    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Manage the ShieldDrive platform</p>
+</section>
+
+<!-- STATS CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div *ngFor="let stat of stats"
+        class="bg-white dark:bg-slate-800 p-5 rounded-md border border-gray-100 dark:border-slate-700 group animate-in fade-in duration-500 hover:shadow-md hover:border-orange-200 dark:hover:border-orange-900/40 transition-all cursor-default">
+        <div class="flex items-start justify-between mb-3">
+            <span class="text-gray-500 dark:text-gray-400 font-bold text-sm">{{stat.label}}</span>
+            <div
+                class="w-9 h-9 rounded-lg bg-orange-50 dark:bg-slate-900 text-orange-500 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all">
+                <span class="material-icons text-lg">{{stat.icon}}</span>
+            </div>
+        </div>
+        <div class="space-y-1">
+            <div class="text-2xl font-bold text-gray-900 dark:text-white">{{stat.value}}</div>
+            <div class="flex items-center text-xs font-bold" *ngIf="stat.trend"
+                [class.text-green-600]="stat.trend.startsWith('+')" [class.text-red-500]="!stat.trend.startsWith('+')">
+                <span class="material-icons text-xs mr-1">{{stat.trend.startsWith('+') ? 'trending_up' :
+                    'trending_down'}}</span>
+                {{stat.trend}} <span class="text-gray-400 dark:text-gray-500 font-medium ml-1">this month</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- RECENT USERS -->
+<section class="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <h3 class="text-base font-bold text-gray-800 dark:text-white">Recent Users</h3>
+    <div class="bg-white dark:bg-slate-800 rounded-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="bg-gray-50/80 dark:bg-slate-900/50 border-b border-gray-100 dark:border-slate-700">
+                    <th class="px-5 py-3 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Name</th>
+                    <th class="px-5 py-3 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Email</th>
+                    <th class="px-5 py-3 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Role</th>
+                    <th class="px-5 py-3 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        Status</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
+                <tr *ngFor="let user of recentUsers"
+                    class="hover:bg-orange-50/40 dark:hover:bg-slate-900/50 transition-colors cursor-default">
+                    <td class="px-5 py-3 font-semibold text-gray-700 dark:text-slate-200 text-sm">{{user.FullName}}</td>
+                    <td class="px-5 py-3 text-gray-500 dark:text-gray-400 text-sm">{{user.Email}}</td>
+                    <td class="px-5 py-3">
+                        <span
+                            class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md text-xs font-bold uppercase">{{user.Role}}</span>
+                    </td>
+                    <td class="px-5 py-3">
+                        <span
+                            class="px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-md text-xs font-bold uppercase inline-flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+                            Active
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

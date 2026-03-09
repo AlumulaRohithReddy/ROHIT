@@ -1,0 +1,103 @@
+<div class="space-y-6">
+    <!-- Header -->
+    <header>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white tracking-tight">Overview</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">Welcome back! Manage your coverage and
+            vehicles.</p>
+    </header>
+
+    <!-- Stats -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div *ngFor="let stat of stats"
+            class="bg-white dark:bg-slate-800 p-5 rounded-md border border-slate-100 dark:border-slate-700 group hover:shadow-md transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+                <span
+                    class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{stat.label}}</span>
+                <div
+                    class="w-9 h-9 rounded-lg bg-orange-50 dark:bg-slate-900/50 text-[#f3af3d] flex items-center justify-center group-hover:bg-[#f3af3d] group-hover:text-white transition-all">
+                    <span class="material-icons text-xl">{{stat.icon}}</span>
+                </div>
+            </div>
+            <div class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{stat.value}}</div>
+        </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Vehicles -->
+        <section class="space-y-3">
+            <h3 class="text-base font-bold text-slate-800 dark:text-slate-200 tracking-tight">Recent Vehicles</h3>
+            <div
+                class="bg-white dark:bg-slate-800 rounded-md border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50/80 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700">
+                        <tr>
+                            <th class="px-5 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Vehicle</th>
+                            <th class="px-5 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Reg #</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50 dark:divide-slate-700/50">
+                        <tr *ngFor="let v of recentVehicles"
+                            class="hover:bg-orange-50/20 dark:hover:bg-slate-900/50 transition-colors">
+                            <td class="px-5 py-3">
+                                <div class="text-sm font-semibold text-slate-700 dark:text-slate-200">{{v.Make}}
+                                    {{v.Model}}</div>
+                                <div class="text-xs text-slate-400 font-medium">{{v.Year}} • {{v.VehicleType}}</div>
+                            </td>
+                            <td class="px-5 py-3">
+                                <span
+                                    class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded text-[11px] font-bold tracking-wider uppercase">{{v.RegistrationNumber.split('
+                                    ').join('')}}</span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="recentVehicles.length === 0">
+                            <td colspan="2" class="px-5 py-6 text-center text-slate-400 text-sm font-medium italic">No
+                                vehicles registered.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recent Claims -->
+        <section class="space-y-3">
+            <h3 class="text-base font-bold text-slate-800 dark:text-slate-200 tracking-tight">Recent Claims</h3>
+            <div
+                class="bg-white dark:bg-slate-800 rounded-md border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50/80 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700">
+                        <tr>
+                            <th class="px-5 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Claim
+                                Details</th>
+                            <th class="px-5 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider text-center">
+                                Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50 dark:divide-slate-700/50">
+                        <tr *ngFor="let c of recentClaims"
+                            class="hover:bg-orange-50/20 dark:hover:bg-slate-900/50 transition-colors">
+                            <td class="px-5 py-3">
+                                <div class="text-sm font-semibold text-slate-700 dark:text-slate-200">{{c.ClaimNumber}}
+                                </div>
+                                <div class="text-xs text-slate-400 font-medium">{{c.DateFiled | date:'mediumDate'}}
+                                </div>
+                            </td>
+                            <td class="px-5 py-3 text-center">
+                                <span [class]="'px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wide inline-flex items-center gap-1 ' + 
+                                    (c.Status === 'Approved' ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400' : 
+                                     'bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400')">
+                                    <span
+                                        [class]="'w-1.5 h-1.5 rounded-full ' + (c.Status === 'Approved' ? 'bg-green-500' : 'bg-orange-500')"></span>
+                                    {{c.Status}}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="recentClaims.length === 0">
+                            <td colspan="2" class="px-5 py-6 text-center text-slate-400 text-sm font-medium italic">No
+                                claims filed.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>

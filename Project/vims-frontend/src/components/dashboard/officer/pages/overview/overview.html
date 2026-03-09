@@ -1,0 +1,103 @@
+<div class="space-y-10 animate-in fade-in duration-500">
+    <!-- Header -->
+    <div class="space-y-1">
+        <h2 class="text-3xl font-bold text-slate-800 dark:text-white tracking-tight transition-colors">Officer Overview
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 font-medium italic transition-colors">Manage your assigned
+            claims
+            and reviews</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div *ngFor="let stat of stats"
+            class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group overflow-hidden relative cursor-default">
+            <div
+                class="absolute top-0 right-0 w-32 h-32 -mr-12 -mt-12 bg-orange-50 dark:bg-orange-900/10 rounded-full opacity-50 group-hover:scale-125 transition-transform duration-500">
+            </div>
+            <div class="flex items-start justify-between relative z-10">
+                <div>
+                    <p
+                        class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2 transition-colors">
+                        {{stat.label}}</p>
+                    <h3 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 transition-colors">
+                        {{stat.value}}</h3>
+                </div>
+                <div
+                    class="w-14 h-14 rounded-2xl bg-orange-50 dark:bg-orange-900/20 text-[#f3af3d] flex items-center justify-center transition-all group-hover:bg-[#f3af3d] group-hover:text-white group-hover:rotate-6">
+                    <span class="material-icons text-3xl">{{stat.icon}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Claims -->
+    <div
+        class="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md overflow-hidden transition-all">
+        <div
+            class="p-8 border-b border-slate-50 dark:border-slate-700/50 flex justify-between items-center bg-slate-50/30 dark:bg-slate-900/40">
+            <h3
+                class="font-bold text-xl text-slate-800 dark:text-slate-200 flex items-center tracking-tight transition-colors">
+                <span class="material-icons text-[#f3af3d] mr-3">history</span>
+                Recent Assigned Claims
+            </h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-slate-50/50 dark:bg-slate-900/20">
+                        <th
+                            class="px-8 py-5 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                            Claim ID</th>
+                        <th
+                            class="px-8 py-5 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                            Customer</th>
+                        <th
+                            class="px-8 py-5 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right">
+                            Amount</th>
+                        <th
+                            class="px-8 py-5 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">
+                            Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50 dark:divide-slate-700/50">
+                    <tr *ngFor="let claim of recentClaims"
+                        class="hover:bg-slate-50 dark:hover:bg-slate-900/60 transition-colors group cursor-default">
+                        <td
+                            class="px-8 py-6 font-bold text-slate-900 dark:text-slate-100 text-sm tracking-tight transition-colors">
+                            {{claim.ClaimNumber}}</td>
+                        <td class="px-8 py-6 text-slate-700 dark:text-slate-300 font-bold text-sm transition-colors">
+                            {{claim.CustomerName}}</td>
+                        <td
+                            class="px-8 py-6 font-bold text-slate-900 dark:text-slate-100 text-lg text-right transition-colors">
+                            ₹{{claim.ApprovedAmount || 'N/A'}}</td>
+                        <td class="px-8 py-6">
+                            <div class="flex items-center justify-center">
+                                <span
+                                    class="px-4 py-1.5 rounded-xl text-xs font-bold tracking-widest uppercase inline-flex items-center transition-all shadow-sm"
+                                    [class.bg-orange-50]="claim.Status === 'UnderReview'"
+                                    [class.dark:bg-orange-900/20]="claim.Status === 'UnderReview'"
+                                    [class.text-orange-600]="claim.Status === 'UnderReview'"
+                                    [class.dark:text-orange-400]="claim.Status === 'UnderReview'"
+                                    [class.bg-green-50]="claim.Status === 'Approved'"
+                                    [class.dark:bg-green-900/20]="claim.Status === 'Approved'"
+                                    [class.text-green-600]="claim.Status === 'Approved'"
+                                    [class.dark:text-green-400]="claim.Status === 'Approved'"
+                                    [class.bg-red-50]="claim.Status === 'Rejected'"
+                                    [class.dark:bg-red-900/20]="claim.Status === 'Rejected'"
+                                    [class.text-red-600]="claim.Status === 'Rejected'"
+                                    [class.dark:text-red-400]="claim.Status === 'Rejected'">
+                                    <span [class]="'w-2 h-2 rounded-full mr-2 ' + 
+                                        (claim.Status === 'Approved' ? 'bg-green-500' : 
+                                         claim.Status === 'UnderReview' ? 'bg-orange-500' : 
+                                         'bg-red-500')"></span>
+                                    {{claim.Status}}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

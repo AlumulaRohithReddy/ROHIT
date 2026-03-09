@@ -1,0 +1,98 @@
+<div
+    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center p-6 font-['Inter',sans-serif]">
+
+    <!-- Animated Background Grid -->
+    <div class="absolute inset-0 opacity-5"
+        style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 48px 48px;">
+    </div>
+
+    <!-- Error Card -->
+    <div class="relative w-full max-w-2xl">
+
+        <!-- Giant Error Code Background -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+            <span class="text-[200px] font-black select-none leading-none transition-all" [class]="getCodeColor()">
+                {{errorCode}}
+            </span>
+        </div>
+
+        <!-- Main Card -->
+        <div class="relative bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-10 shadow-2xl overflow-hidden"
+            [class]="'border-l-4 ' + getBorderColor()">
+
+            <!-- Type Badge -->
+            <div class="flex items-center justify-between mb-10">
+                <div class="flex items-center space-x-3 px-4 py-2 rounded-full border text-xs font-black uppercase tracking-widest"
+                    [class]="getBadgeColor()">
+                    <span class="material-icons text-sm">{{errorInfo.icon}}</span>
+                    <span>Error {{errorCode}}</span>
+                </div>
+                <div class="text-slate-600 text-xs font-mono">{{errorCode >= 400 && errorCode < 500 ? 'Client Error'
+                        : 'Server Error' }}</div>
+                </div>
+
+                <!-- Error Icon -->
+                <div class="flex justify-center mb-8">
+                    <div class="relative">
+                        <div
+                            class="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                            <span class="material-icons text-5xl transition-all"
+                                [class]="getIconColor()">{{errorInfo.icon}}</span>
+                        </div>
+                        <div
+                            class="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center text-xs font-black text-slate-400">
+                            !</div>
+                    </div>
+                </div>
+
+                <!-- Title & Description -->
+                <div class="text-center mb-8 space-y-3">
+                    <h1 class="text-3xl font-black text-white tracking-tight">{{errorInfo.title}}</h1>
+                    <p class="text-slate-400 font-medium leading-relaxed">{{errorInfo.description}}</p>
+                </div>
+
+                <!-- Custom Error Message (from API) -->
+                <div *ngIf="errorMessage" class="mb-8 p-4 rounded-2xl bg-black/30 border border-white/5">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Error Details</p>
+                    <p class="text-sm font-mono text-slate-300 leading-relaxed break-words">{{errorMessage}}</p>
+                </div>
+
+                <!-- Technical Info -->
+                <div class="mb-8 grid grid-cols-3 gap-3 text-center">
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Status Code</p>
+                        <p class="font-black text-white text-lg">{{errorCode}}</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Type</p>
+                        <p class="font-bold text-white text-sm truncate">{{errorInfo.title}}</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Time</p>
+                        <p class="font-bold text-white text-sm">{{errorCode >= 400 && errorCode < 500 ? '4xx' : '5xx'
+                                }}</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex space-x-3">
+                    <button (click)="goBack()"
+                        class="flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-bold text-sm transition-all active:scale-95">
+                        <span class="material-icons text-base">arrow_back</span>
+                        <span>Go Back</span>
+                    </button>
+                    <button (click)="goHome()"
+                        class="flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl bg-[#f3af3d] hover:bg-[#e67e22] text-white font-black text-sm transition-all shadow-lg shadow-orange-900/20 active:scale-95">
+                        <span class="material-icons text-base">home</span>
+                        <span>Go Home</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- VIMS Branding -->
+            <p class="text-center text-slate-600 text-xs font-bold mt-6 uppercase tracking-widest">
+                VIMS &mdash; Vehicle Insurance Management System
+            </p>
+        </div>
+    </div>

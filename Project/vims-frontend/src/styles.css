@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Roboto', sans-serif;
+    @apply transition-colors duration-300;
+  }
+}
+
+
+.input {
+  @apply w-full border p-2 rounded mb-2;
+}
+
+.btn {
+  @apply bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700;
+}
+
+/* body {
+  @apply bg-gradient-to-br from-indigo-900 via-purple-900 to-gray-900 text-white;
+} */
+
+/* glass card */
+.card {
+  @apply bg-white/10 backdrop-blur-lg rounded-xl shadow-lg p-6 border border-white/20;
+}
+
+.input {
+  @apply w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg transition;
+}
+
+.btn-danger {
+  @apply bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded;
+}
+
+/* Animation */
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Snackbar notification styles */
+.error-snackbar {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4) !important;
+}
+
+.error-snackbar .mat-mdc-snack-bar-label {
+  color: #ffffff !important;
+}
+
+.error-snackbar .mat-mdc-button {
+  color: #fca5a5 !important;
+}
+
+.success-snackbar {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.4) !important;
+}
+
+.success-snackbar .mat-mdc-snack-bar-label {
+  color: #ffffff !important;
+}
+
+.success-snackbar .mat-mdc-button {
+  color: #86efac !important;
+}

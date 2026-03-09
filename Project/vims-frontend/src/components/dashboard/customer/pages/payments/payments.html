@@ -1,0 +1,55 @@
+<h2 class="text-3xl font-bold text-slate-800 dark:text-white tracking-tight mb-10 transition-colors">Payment History
+</h2>
+
+<div
+    class="bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden transition-colors">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="bg-slate-50/50 dark:bg-slate-900/40 border-b border-slate-100 dark:border-slate-700/50">
+                    <th
+                        class="px-8 py-5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                        Date</th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                        Transaction ID</th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                        Amount</th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">
+                        Status</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-50 dark:divide-slate-700/50">
+                <tr *ngFor="let p of payments"
+                    class="hover:bg-slate-50/80 dark:hover:bg-slate-900/40 transition-colors group cursor-default">
+                    <td
+                        class="px-8 py-5 text-slate-600 dark:text-slate-400 font-bold text-sm tracking-tight transition-colors">
+                        {{p.PaymentDate | date:'mediumDate'}}</td>
+                    <td class="px-8 py-5 font-mono text-xs text-slate-400 dark:text-slate-500 transition-colors italic">
+                        {{p.TransactionId}}</td>
+                    <td class="px-8 py-5 font-bold text-slate-900 dark:text-slate-100 text-lg transition-colors">
+                        ₹{{p.Amount | number}}</td>
+                    <td class="px-8 py-5 text-center">
+                        <span
+                            class="px-4 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 inline-flex items-center transition-all">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></span>
+                            {{p.Status}}
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf="payments.length === 0">
+                    <td colspan="4" class="px-8 py-24 text-center transition-colors">
+                        <div
+                            class="w-20 h-20 bg-slate-50 dark:bg-slate-900/50 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <span class="material-icons text-5xl text-slate-200 dark:text-slate-700">payments</span>
+                        </div>
+                        <p class="text-slate-400 dark:text-slate-500 font-bold italic tracking-tight">No payment records
+                            found.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

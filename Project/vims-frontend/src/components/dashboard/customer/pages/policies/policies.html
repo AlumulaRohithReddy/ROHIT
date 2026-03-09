@@ -1,0 +1,76 @@
+<div class="space-y-6">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white tracking-tight">My Policies</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">View and manage your insurance coverage.
+            </p>
+        </div>
+        <button (click)="onAddNew()"
+            class="bg-[#f3af3d] hover:bg-[#e67e22] text-white px-5 py-2.5 rounded-md font-bold text-sm flex items-center space-x-2 active:scale-95 transition-all shadow-sm">
+            <span class="material-icons text-lg">add</span>
+            <span class="uppercase tracking-wide">Buy New Policy</span>
+        </button>
+    </header>
+
+    <!-- Policies List -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12">
+        <div *ngFor="let p of policies"
+            class="bg-white dark:bg-slate-800 p-5 rounded-md border border-slate-100 dark:border-slate-700 border-l-4 border-l-[#f3af3d] hover:shadow-md transition-all duration-300 relative group">
+
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span
+                        class="text-[10px] font-bold text-[#f3af3d] uppercase tracking-wider bg-orange-50 dark:bg-orange-900/20 px-2 py-0.5 rounded mb-1.5 inline-block">{{p.PlanName}}</span>
+                    <h4 class="text-lg font-bold text-slate-800 dark:text-white leading-tight mt-1">{{p.PolicyNumber}}
+                    </h4>
+                </div>
+                <span [class]="'px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wide border ' + 
+                    (p.Status === 'Active' || p.Status === 'Approved' ? 'bg-green-50 dark:bg-green-900/20 text-green-600 border-green-100 dark:border-green-900/30' : 
+                     'bg-slate-50 dark:bg-slate-700 text-slate-400 border-slate-100 dark:border-slate-700')">
+                    {{p.Status}}
+                </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 py-4 border-y border-slate-50 dark:border-slate-700/50">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Coverage (IDV)</p>
+                    <p class="text-sm font-bold text-slate-700 dark:text-slate-200">₹{{p.IDV | number}}</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Premium</p>
+                    <p class="text-base font-bold text-[#f3af3d]">₹{{p.PremiumAmount | number}}</p>
+                </div>
+            </div>
+
+            <div class="mt-4 flex flex-col space-y-3">
+                <button *ngIf="p.Status === 'Approved'" (click)="onBuyPolicy(p.PolicyId)"
+                    class="w-full bg-[#f3af3d] hover:bg-[#e67e22] text-white py-2 rounded-md font-bold text-xs uppercase tracking-wide transition-all active:scale-95 shadow-sm">
+                    Pay Now & Active
+                </button>
+
+                <button *ngIf="p.Status === 'Active' && p.PaymentId" (click)="onDownloadInvoice(p.PaymentId)"
+                    class="w-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white py-2 rounded-md font-bold text-xs hover:bg-slate-200 flex items-center justify-center space-x-2 transition-all active:scale-95">
+                    <span class="material-icons text-base">download</span>
+                    <span>Download Invoice</span>
+                </button>
+
+                <div
+                    class="flex items-center justify-between text-[11px] text-slate-400 font-bold uppercase pt-2 border-t border-slate-50 dark:border-slate-700/50">
+                    <span>{{p.StartDate | date:'mediumDate'}}</span>
+                    <span class="text-[9px] opacity-40">UNTIL</span>
+                    <span>{{p.EndDate | date:'mediumDate'}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="policies.length === 0" class="col-span-full py-16 text-center">
+            <div
+                class="w-16 h-16 bg-slate-50 dark:bg-slate-900/50 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span class="material-icons text-3xl text-slate-200 dark:text-slate-700">shield</span>
+            </div>
+            <p class="text-slate-400 font-bold text-sm italic">No active policies found.</p>
+        </div>
+    </div>
+</div>

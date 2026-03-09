@@ -1,0 +1,204 @@
+<div class="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">User Management</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">Manage agents, officers, and
+                customers</p>
+        </div>
+        <button (click)="onAddUser()"
+            class="flex items-center px-5 py-2.5 bg-[#f3af3d] hover:bg-[#e67e22] text-white rounded-md font-bold text-sm transition-all active:scale-95 group shadow-sm hover:shadow-orange-200 dark:hover:shadow-none">
+            <span class="material-icons mr-1.5 text-base">add</span>
+            Add User
+        </button>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div
+            class="bg-white dark:bg-slate-800 p-4 rounded-md border border-slate-100 dark:border-slate-700 flex items-center justify-between border-l-4 border-orange-400 hover:shadow-md transition-all cursor-default group">
+            <div>
+                <p class="text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wide">Customers</p>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{{stats.customers}}</p>
+            </div>
+            <span
+                class="material-icons text-3xl text-slate-200 dark:text-slate-700 group-hover:text-orange-300 transition-colors">people</span>
+        </div>
+
+        <div
+            class="bg-white dark:bg-slate-800 p-4 rounded-md border border-slate-100 dark:border-slate-700 flex items-center justify-between border-l-4 border-blue-400 hover:shadow-md transition-all cursor-default group">
+            <div>
+                <p class="text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wide">Agents</p>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{{stats.agents}}</p>
+            </div>
+            <span
+                class="material-icons text-3xl text-slate-200 dark:text-slate-700 group-hover:text-blue-300 transition-colors">support_agent</span>
+        </div>
+
+        <div
+            class="bg-white dark:bg-slate-800 p-4 rounded-md border border-slate-100 dark:border-slate-700 flex items-center justify-between border-l-4 border-green-400 hover:shadow-md transition-all cursor-default group">
+            <div>
+                <p class="text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wide">Officers</p>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{{stats.officers}}</p>
+            </div>
+            <span
+                class="material-icons text-3xl text-slate-200 dark:text-slate-700 group-hover:text-green-300 transition-colors">security</span>
+        </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="bg-white dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div
+            class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/20">
+            <div class="relative w-72 group">
+                <span
+                    class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
+                <input type="text" [(ngModel)]="searchTerm" (input)="applyFilters()" placeholder="Search users..."
+                    class="w-full pl-10 pr-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md text-sm outline-none focus:border-orange-300 transition-colors">
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <select [(ngModel)]="selectedRole" (change)="applyFilters()"
+                    class="px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-bold outline-none cursor-pointer">
+                    <option value="">All Roles</option>
+                    <option value="Customer">Customer</option>
+                    <option value="InsuranceAgent">Agent</option>
+                    <option value="ClaimsOfficer">Officer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/30 dark:bg-slate-900/20">
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            ID</th>
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            Name</th>
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            Email</th>
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            Role</th>
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            Status</th>
+                        <th
+                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">
+                            Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                    <tr *ngFor="let user of filteredUsers; let i = index"
+                        class="hover:bg-orange-50/40 dark:hover:bg-slate-900/50 transition-colors cursor-default group">
+                        <td class="px-6 py-3.5 text-xs font-bold text-slate-400">us-{{user.UserId}}</td>
+                        <td class="px-6 py-3.5">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="w-8 h-8 rounded-md bg-orange-50 dark:bg-slate-700 text-orange-500 dark:text-orange-400 flex items-center justify-center font-bold text-sm border border-orange-100 dark:border-slate-600 group-hover:bg-orange-100 dark:group-hover:bg-slate-600 transition-colors">
+                                    {{user.FullName.charAt(0)}}
+                                </div>
+                                <span
+                                    class="font-semibold text-slate-700 dark:text-slate-200 text-sm">{{user.FullName}}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400">
+                            {{user.Email}}</td>
+                        <td class="px-6 py-3.5">
+                            <span
+                                class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md text-xs font-bold uppercase tracking-wide">
+                                {{user.Role}}
+                            </span>
+                        </td>
+                        <td class="px-6 py-3.5">
+                            <span
+                                class="px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-md text-xs font-bold uppercase inline-flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-3.5 text-right">
+                            <button (click)="onResetPassword(user.UserId)" title="Reset Password"
+                                class="p-1.5 hover:bg-orange-50 dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-orange-500 transition-colors">
+                                <span class="material-icons text-base">lock_reset</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div *ngIf="showAddUserModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 animate-in fade-in duration-300">
+    <div
+        class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-md border border-slate-200 dark:border-slate-700 overflow-hidden animate-in zoom-in-95 duration-300">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-white">Add New User</h3>
+                <button (click)="showAddUserModal = false"
+                    class="w-8 h-8 flex items-center justify-center text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors">
+                    <span class="material-icons text-lg">close</span>
+                </button>
+            </div>
+
+            <form #userForm="ngForm" (ngSubmit)="userForm.valid && onCreateUser()" class="space-y-4">
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
+                    <input type="text" name="FullName" [(ngModel)]="newUser.FullName" #fullNameModel="ngModel" required
+                        class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 outline-none focus:border-orange-400 transition-colors"
+                        [class.border-red-400]="fullNameModel.invalid && fullNameModel.touched" placeholder="Full Name">
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
+                    <input type="email" name="Email" [(ngModel)]="newUser.Email" #emailModel="ngModel" required email
+                        class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 outline-none focus:border-orange-400 transition-colors"
+                        [class.border-red-400]="emailModel.invalid && emailModel.touched" placeholder="Email">
+                    <div *ngIf="emailModel.invalid && emailModel.touched"
+                        class="text-red-500 text-[10px] font-bold mt-1 uppercase">
+                        <span *ngIf="emailModel.errors?.['required']">Required</span>
+                        <span *ngIf="emailModel.errors?.['email']">Invalid format</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Password</label>
+                        <input type="password" name="Password" [(ngModel)]="newUser.Password" #passModel="ngModel"
+                            required
+                            class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 outline-none focus:border-orange-400 transition-colors"
+                            [class.border-red-400]="passModel.invalid && passModel.touched" placeholder="Password">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Role</label>
+                        <select name="Role" [(ngModel)]="newUser.Role" required
+                            class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 outline-none">
+                           
+                            <option value="InsuranceAgent">Agent</option>
+                            <option value="ClaimsOfficer">Officer</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex space-x-3">
+                    <button type="button" (click)="showAddUserModal = false"
+                        class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-md text-sm transition-all hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-95">
+                        Cancel
+                    </button>
+                    <button type="submit" [disabled]="userForm.invalid"
+                        class="flex-1 py-2.5 bg-slate-900 dark:bg-slate-500 disabled:bg-slate-300 disabled:shadow-none text-white font-bold rounded-md text-sm shadow-sm hover:bg-black transition-all active:scale-95">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

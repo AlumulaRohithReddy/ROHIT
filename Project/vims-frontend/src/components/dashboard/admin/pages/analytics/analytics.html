@@ -1,0 +1,70 @@
+<div class="space-y-6 animate-in fade-in duration-500">
+    <!-- Header -->
+    <header class="flex flex-col gap-1">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Analytics & Reports</h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium tracking-tight">Platform performance metrics and insights</p>
+    </header>
+
+    <!-- KPI Stats -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div *ngFor="let stat of stats"
+            class="bg-white dark:bg-slate-800 p-5 rounded-md border border-gray-100 dark:border-slate-700 hover:shadow-md transition-all group">
+            <div class="flex items-start justify-between mb-3">
+                <span class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">{{stat.label}}</span>
+                <div class="w-10 h-10 rounded-lg bg-orange-50 dark:bg-slate-900 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                    <span class="material-icons text-xl">{{stat.icon}}</span>
+                </div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">{{stat.value}}</div>
+                <div class="flex items-center text-[10px] font-bold" *ngIf="stat.trend"
+                    [class.text-green-600]="stat.trend.startsWith('+')" [class.text-red-500]="!stat.trend.startsWith('+')">
+                    <span class="material-icons text-xs mr-1">{{stat.trend.startsWith('+') ? 'trending_up' : 'trending_down'}}</span>
+                    {{stat.trend}} <span class="text-gray-400 dark:text-gray-500 font-medium ml-1 lowercase">vs last month</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Row 1: Revenue & Policy Dist -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Monthly Revenue -->
+        <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-md border border-gray-100 dark:border-slate-700 hover:shadow-sm transition-all">
+            <div class="mb-6">
+                <h3 class="text-sm font-bold text-gray-800 dark:text-white tracking-tight">Monthly Revenue</h3>
+                <div class="text-2xl font-black text-gray-900 dark:text-white mt-1">₹{{dashboardStats?.TotalRevenue | number}}</div>
+            </div>
+            <div class="h-64">
+                <canvas #revenueChart></canvas>
+            </div>
+        </div>
+
+        <!-- Policy Distribution -->
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-md border border-gray-100 dark:border-slate-700 hover:shadow-sm transition-all">
+            <h3 class="text-sm font-bold text-gray-800 dark:text-white tracking-tight mb-6">Policy Distribution</h3>
+            <div class="h-64 relative flex items-center justify-center">
+                <canvas #policyChart></canvas>
+                <!-- Overlay text for doughnut center if needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Row 2: Claims Trend & User Growth -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6">
+        <!-- Claims Trend -->
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-md border border-gray-100 dark:border-slate-700 hover:shadow-sm transition-all">
+            <h3 class="text-sm font-bold text-gray-800 dark:text-white tracking-tight mb-6">Claims Trend</h3>
+            <div class="h-64">
+                <canvas #claimsChart></canvas>
+            </div>
+        </div>
+
+        <!-- User Growth -->
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-md border border-gray-100 dark:border-slate-700 hover:shadow-sm transition-all">
+            <h3 class="text-sm font-bold text-gray-800 dark:text-white tracking-tight mb-6">User Growth</h3>
+            <div class="h-64">
+                <canvas #growthChart></canvas>
+            </div>
+        </div>
+    </section>
+</div>

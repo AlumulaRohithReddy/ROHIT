@@ -1,0 +1,18 @@
+/* Snackbar Styles */
+.success-snackbar {
+    background-color: #4caf50 !important;
+    color: white !important;
+}
+
+.error-snackbar {
+    background-color: #f44336 !important;
+    color: white !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    font-weight: 500;
+}
+
+.mat-mdc-snack-bar-container .mdc-button__label {
+    color: white !important;
+}
